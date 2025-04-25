@@ -28,16 +28,6 @@ https://vimeo.com/1078609707/996a335f5d?ts=0&share=copy
 
 ---
 
-## Screenshots
-
-**(Placeholder: Add screenshots of the application in light/dark mode, table/card view, etc.)**
-
-```
-![Light Mode Table View](placeholder-light.png)
-![Dark Mode Card View](placeholder-dark.png)
-```
-
----
 
 ## Features
 
