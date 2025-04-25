@@ -1,0 +1,525 @@
+:root {
+  /* --bg-color: linear-gradient(to bottom, #f8f9fa, #e9ecef); */ /* Old light gradient */
+  --bg-color: linear-gradient(to bottom, #eef2f7, #dfe9f3); /* New: Subtle blueish tint */
+  --text-color: #333;
+  --card-bg-color: #fff;
+  --header-bg-start: #e8eaf6;
+  --header-bg-end: #d1d9f0;
+  --header-text-color: #3f51b5;
+  --border-color: #ddd;
+  --accent-color: #1a237e;
+  --logo-symbol-color: #777;
+  --positive-color: #4caf50;
+  --negative-color: #f44336;
+  --zero-color: #757575;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --link-color: #3f51b5;
+  --row-hover-bg-color: #f0f2f5; /* Light hover color */
+  --accent-color-rgb: 63, 81, 181; /* RGB for #3f51b5 */
+  --positive-color-rgb: 76, 175, 80; /* RGB for #4caf50 */
+  --negative-color-rgb: 244, 67, 54; /* RGB for #f44336 */
+}
+
+body.dark {
+  /* --bg-color: linear-gradient(to bottom, #1f2924, #151c18); */ /* Old: Slightly greener dark */
+  --bg-color: linear-gradient(to bottom, #0f172a, #1e293b); /* New: Dark Slate Blue */
+  --text-color: #e0e0e0; /* Lighter text */
+  --card-bg-color: #1e1e1e; /* Darker card */
+  --header-bg-start: #2c2c2c;
+  --header-bg-end: #383838;
+  --header-text-color: #bb86fc; /* Purple accent */
+  --border-color: #444;
+  --accent-color: #bb86fc;
+  --logo-symbol-color: #aaa;
+  --positive-color: #03dac6; /* Teal accent */
+  --negative-color: #cf6679; /* Soft red accent */
+  --zero-color: #aaa;
+  --shadow-color: rgba(255, 255, 255, 0.1);
+  --link-color: #bb86fc;
+  --row-hover-bg-color: #2a2a2a; /* Dark hover color */
+  --accent-color-rgb: 187, 134, 252; /* RGB for #bb86fc */
+  --positive-color-rgb: 3, 218, 198; /* RGB for #03dac6 */
+  --negative-color-rgb: 207, 102, 121; /* RGB for #cf6679 */
+}
+
+body {
+  font-family: 'Inter', sans-serif; /* New font */
+  margin: 0;
+  /* Apply gradient background directly */
+  background: var(--bg-color);
+  /* Ensure background covers full height */
+  min-height: 100vh;
+  padding: 20px;
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+  overflow-y: scroll; /* Always show scrollbar to prevent layout jump */
+}
+
+.App {
+  max-width: 1400px; /* Wider container */
+  margin: 20px auto;
+  /* background-color: var(--card-bg-color); */ /* Remove this to let body bg show */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative; /* Needed for pseudo-element positioning */
+  z-index: 1; /* Ensure content is above ::before */
+  overflow: hidden; /* Prevent pseudo-element bleed if needed */
+}
+
+.App::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: inherit;
+  z-index: -1;
+
+  /* Add multiple background images - added LTC, LINK, BCH, UNI */
+  background-image:
+    url('https://s2.coinmarketcap.com/static/img/coins/64x64/1.png'),    /* BTC */
+    url('https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png'),  /* ETH */
+    url('https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png'),  /* BNB */
+    url('https://s2.coinmarketcap.com/static/img/coins/64x64/5426.png'),  /* SOL */
+    url('https://s2.coinmarketcap.com/static/img/coins/64x64/2010.png'), /* ADA */
+    url('https://s2.coinmarketcap.com/static/img/coins/64x64/74.png'),   /* DOGE */
+    url('https://s2.coinmarketcap.com/static/img/coins/64x64/6636.png'), /* DOT */
+    url('https://s2.coinmarketcap.com/static/img/coins/64x64/52.png'),   /* XRP */
+    url('https://s2.coinmarketcap.com/static/img/coins/64x64/2.png'),    /* LTC */
+    url('https://s2.coinmarketcap.com/static/img/coins/64x64/1975.png'), /* LINK */
+    url('https://s2.coinmarketcap.com/static/img/coins/64x64/1831.png'), /* BCH */
+    url('https://s2.coinmarketcap.com/static/img/coins/64x64/7083.png'); /* UNI */
+
+  /* Adjust positions to spread them out */
+  background-position:
+    top 10% left 5%,     /* BTC */
+    bottom 15% right 10%,  /* ETH */
+    center center,        /* BNB */
+    top 20% right 5%,     /* SOL */
+    bottom 5% left 10%,   /* ADA */
+    top 5% center,        /* DOGE */
+    /* center right 20%,     DOT */
+    bottom 25% left 25%,  /* XRP */
+    top 50% left 15%,     /* LTC */
+    bottom 50% right 15%, /* LINK */
+    top 30% left 30%,     /* BCH */
+    bottom 10% center;    /* UNI */
+
+  /* Adjust sizes - added LTC, LINK, BCH, UNI sizes */
+  background-size:
+    60px, /* BTC */
+    50px, /* ETH */
+    70px, /* BNB */
+    55px, /* SOL */
+    45px, /* ADA */
+    65px, /* DOGE */
+    50px, /* DOT */
+    48px, /* XRP */
+    52px, /* LTC */
+    46px, /* LINK */
+    58px, /* BCH */
+    50px; /* UNI */
+
+  background-repeat: no-repeat;
+  opacity: 0.1; /* Increased from 0.05 for more visibility */
+  transition: opacity 0.3s ease;
+}
+
+/* Glassmorphism for Dark Mode */
+body.dark .App {
+  /* Re-affirm background color if glassmorphism was removed/changed */
+  /* background-color: rgba(30, 30, 30, 0.75); */
+  /* backdrop-filter: blur(10px); */
+  /* -webkit-backdrop-filter: blur(10px); */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Header Styling */
+.app-header {
+  display: flex;
+  justify-content: center; /* Ensure title is centered */
+  align-items: center;
+  margin-bottom: 20px;
+  /* Removed gap/wrap/space-between */
+}
+
+/* New container for top-right icons */
+.top-right-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column; /* Stack icons vertically */
+  gap: 10px; /* Space between icons */
+  z-index: 1000;
+}
+
+/* Shared styles for all icon buttons */
+.icon-button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 1.2em;
+  background-color: var(--card-bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  margin: 0; /* Reset margin */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px var(--shadow-color);
+  line-height: 1;
+}
+
+.icon-button svg {
+  width: 22px;
+  height: 22px;
+}
+
+.icon-button:hover {
+  background-color: var(--header-bg-end);
+  color: var(--header-text-color);
+  border-color: var(--header-bg-start);
+}
+
+/* Specific class for theme toggle if needed, but common styles are in .icon-button */
+.theme-toggle-button {
+  /* Inherits styles from .icon-button */
+  /* No fixed positioning needed here anymore */
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column; /* Ensure links stack if container is row */
+  align-items: center;
+  gap: 10px;
+}
+
+.social-links a {
+  /* Inherits most styles from .icon-button */
+  /* Override/add specifics if needed */
+  color: var(--logo-symbol-color); /* Different base color for social icons */
+  font-size: 1.2em; /* Match theme button icon size */
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  color: var(--accent-color);
+  background-color: var(--header-bg-end);
+  border-color: var(--header-bg-start);
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: var(--accent-color);
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+}
+
+.crypto-table-container {
+  overflow-x: auto;
+}
+
+/* Custom Scrollbar Styles (WebKit) */
+.crypto-table-container::-webkit-scrollbar {
+  height: 8px; /* Height of horizontal scrollbar */
+  width: 8px; /* Width of vertical scrollbar (if needed) */
+}
+
+.crypto-table-container::-webkit-scrollbar-track {
+  background: var(--card-bg-color); /* Track color matches card background */
+  border-radius: 4px;
+}
+
+.crypto-table-container::-webkit-scrollbar-thumb {
+  background-color: var(--logo-symbol-color); /* Thumb color */
+  border-radius: 4px;
+  border: 2px solid var(--card-bg-color); /* Creates padding around thumb */
+}
+
+.crypto-table-container::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-color); /* Change color on hover */
+}
+
+.crypto-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 0.9em;
+}
+
+.crypto-table thead {
+  background: linear-gradient(to bottom, var(--header-bg-start), var(--header-bg-end));
+  transition: background 0.3s ease;
+}
+
+.crypto-table th,
+.crypto-table td {
+  padding: 14px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  transition: border-color 0.3s ease;
+  vertical-align: middle; /* Ensure vertical alignment for all cells */
+}
+
+.crypto-table th {
+  font-weight: bold;
+  color: var(--header-text-color);
+  text-align: left; /* Default left align headers */
+  vertical-align: middle;
+  transition: color 0.3s ease;
+}
+
+.crypto-table th:first-child,
+.crypto-table td:first-child {
+  text-align: center; /* Center # column */
+  vertical-align: middle;
+}
+
+.crypto-table th:nth-child(2) {
+  /* text-align: left; */ /* Redundant now */
+  vertical-align: middle;
+}
+
+.crypto-table td:nth-child(2) {
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap; /* Prevent name wrapping */
+}
+
+.crypto-logo {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.crypto-name {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.crypto-symbol {
+  color: var(--logo-symbol-color);
+  font-size: 0.85em; /* Slightly smaller */
+  font-weight: 400; /* Lighter weight */
+  transition: color 0.3s ease;
+}
+
+.percentage {
+  display: inline-flex;
+  align-items: center;
+}
+
+.percentage-value.positive {
+  color: var(--positive-color);
+}
+
+.percentage-value.negative {
+  color: var(--negative-color);
+}
+
+.percentage-value.zero {
+  color: var(--zero-color);
+}
+
+.percentage-icon {
+  margin-right: 3px;
+  font-size: 1em;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.rank {
+    color: var(--logo-symbol-color);
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.crypto-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.crypto-table tbody tr:hover {
+  background-color: var(--row-hover-bg-color);
+}
+
+.crypto-table th.sortable-header {
+  cursor: pointer;
+}
+
+.sort-indicator {
+  margin-left: 4px;
+}
+
+/* Style for the default, non-active indicator */
+.sort-indicator.default {
+  color: var(--logo-symbol-color); /* Use a less prominent color */
+  opacity: 0.5; /* Make it slightly faded */
+}
+
+/* Optional: Style for the active indicator (if needed, e.g., different color) */
+/* .sort-indicator.active { */
+  /* color: var(--accent-color); */
+/* } */
+
+/* Card View Breakpoint */
+@media screen and (max-width: 1357px) {
+  .crypto-table {
+    border: 0;
+  }
+
+  .crypto-table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  .crypto-table tr {
+    display: block;
+    margin-bottom: 1.5em;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+  }
+
+  body.dark .crypto-table tr {
+     box-shadow: 0 2px 5px rgba(255, 255, 255, 0.08);
+  }
+
+  .crypto-table td {
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+    padding: 10px 15px;
+    text-align: right;
+    white-space: normal; /* Allow wrapping in card values */
+  }
+
+  .crypto-table td:last-child {
+    border-bottom: 0;
+  }
+
+  .crypto-table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    color: var(--logo-symbol-color);
+    margin-right: 10px;
+    text-align: left;
+  }
+
+  /* Hide Rank and Sparkline in card view */
+  .crypto-table td:nth-child(1),
+  .crypto-table td:nth-child(10) {
+    display: none;
+  }
+
+  /* Adjust Name row in card view */
+  .crypto-table td:nth-child(2) {
+    justify-content: flex-start;
+    padding: 15px;
+    white-space: nowrap; /* Keep name elements inline in card */
+  }
+
+  .crypto-table td:nth-child(2)::before {
+    display: none; /* Hide the "Name" label */
+  }
+}
+
+/* Optional: Further adjustments for very small screens */
+@media (max-width: 480px) {
+    /* Example: Hide less critical data */
+    /*
+    .crypto-table td[data-label="1h %"],
+    .crypto-table td[data-label="7d %"],
+    .crypto-table td[data-label="Volume (24h)"] {
+        display: none;
+    }
+    */
+    h1 {
+      font-size: 1.3em;
+    }
+    .App {
+        padding: 15px;
+    }
+}
+
+/* ... other media queries (if any) ... */
+
+/* Search Bar Styling */
+.table-controls {
+  margin-bottom: 20px; /* Increase spacing */
+  display: flex;
+  justify-content: center; /* Center the search input */
+}
+
+.search-input {
+  padding: 8px 12px;
+  font-size: 0.9em;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: var(--card-bg-color); /* Match card background */
+  color: var(--text-color);
+  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  min-width: 250px; /* Give it some initial width */
+}
+
+.search-input::placeholder {
+  color: var(--logo-symbol-color); /* Use subtle color for placeholder */
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent-color); /* Highlight border on focus */
+  box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb, 63, 81, 181), 0.2); /* Optional focus ring */
+}
+
+/* Ensure sparkline aligns well in the cell */
+.crypto-table td:last-child {
+  padding-top: 10px; /* Adjust padding if needed */
+  padding-bottom: 10px;
+}
+
+/* Price Flash Animations */
+@keyframes flash-up {
+  0% { background-color: rgba(var(--positive-color-rgb, 76, 175, 80), 0.5); } /* Start with flash color */
+  100% { background-color: transparent; } /* End transparent */
+}
+
+@keyframes flash-down {
+  0% { background-color: rgba(var(--negative-color-rgb, 244, 67, 54), 0.5); }
+  100% { background-color: transparent; }
+}
+
+.price-cell {
+  /* This class is only for the animation trigger */
+  /* Ensure it doesn't override alignment */
+  vertical-align: middle; /* Explicitly set, though should inherit */
+  text-align: right; /* Price should be right-aligned */
+}
+
+.price-cell.flash-up {
+  animation: flash-up 0.7s ease-out;
+}
+
+.price-cell.flash-down {
+  animation: flash-down 0.7s ease-out;
+}
