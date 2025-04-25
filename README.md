@@ -15,7 +15,7 @@ This is a responsive React application that displays cryptocurrency prices and s
 **(Placeholder for link to the hosted application)**
 
 ```
-[Link to Live Application]
+https://crypto-tracker-nine-khaki.vercel.app
 ```
 
 ---
@@ -23,7 +23,7 @@ This is a responsive React application that displays cryptocurrency prices and s
 ## Demo Video
 
 ```
-[Demo Video](https://vimeo.com/1078609707/996a335f5d?ts=0&share=copy)
+https://vimeo.com/1078609707/996a335f5d?ts=0&share=copy
 ```
 
 ---
